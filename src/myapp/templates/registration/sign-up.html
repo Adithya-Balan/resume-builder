@@ -1,0 +1,14 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock  %}
+
+{% block title %}Register in{% endblock  %}
+
+{% block content %}
+
+<form method="POST">
+    {{form}}
+    <input type = 'submit'>Submit
+</form>
+{% endblock  %}

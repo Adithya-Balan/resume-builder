@@ -1,0 +1,39 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock  %}
+
+{% block title %}Working or internship{% endblock  %}
+
+{% block content %}
+{% include "myapp/navbar.html" %}
+
+
+{% comment %} Main section {% endcomment %}
+<div class='flex flex-row mt-20'>
+    <img src = '{% static "assest/working_un.svg" %}' class='h-60 w-1/3'>
+    <div class='mt-20'>
+        <p class='text-4xl font-extrabold'>Add Your Working experience or internships...</p>
+        <p class='text-xl text-c2 mr-10'><span class="text-2xl text-black font-extrabold">Tip:</span> The more work experience you include, the better your resume will be!</p>
+    </div>
+</div>
+
+{% comment %} Form section {% endcomment %}
+<div class='bg-c1 mt-24 text-xl'>
+    <form method='post' class='p-6 ml-40'>
+        {% csrf_token %}
+    <div class='grid grid-cols-2 gap-7'>
+        {% for field in form %}
+        <div>
+        <span class='text-white'>{{field.label}}</span><br>
+        {{field}}<br>
+        {{field.errors}}
+        </div>
+        {% endfor %}
+    </div>
+    <input type='submit' value='submit' name = 'submit' class='bg-white px-4 py-2 mt-10 text-c1 hover:text-white hover:bg-blue-900 cursor-pointer rounded-lg'>
+    <input type='submit' value='Submit & Add Another' name = 'add_another' class='bg-white px-4 py-2 mt-10 text-c1 hover:text-white hover:bg-blue-900 cursor-pointer rounded-lg'>
+
+    </form><br>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block style %}<link href= "{% static 'output.css' %}" rel="stylesheet">{% endblock  %}
+
+{% block title %}Others{% endblock  %}
+
+{% block content %}
+{% include "myapp/navbar.html" %}
+
+{% comment %} Main section {% endcomment %}
+<div class='flex flex-row mt-20'>
+    <img src = '{% static "assest/link_un.svg" %}' class='h-60 w-1/3'>
+    <div class='mt-20'>
+        <p class='text-4xl font-extrabold'>Share the URLs and details of your projects.</p>
+        <p class='text-xl text-c2 mr-10 ml-1'><span class="text-2xl text-black font-extrabold">Tip:</span> Provide accessible links and Share a well-organized list of all the projects you've worked on.</p>
+    </div>
+</div>
+
+{% comment %} Form section {% endcomment %}
+<div class='bg-c1 mt-24 text-xl'>
+    <form method='post' class='p-6 ml-40'>
+        {% csrf_token %}
+    <div class='grid grid-cols-2 gap-7'>
+        {% for field in form %}
+        <div>
+        <span class='text-white'>{{field.label}}</span><br>
+        {{field}}<br>
+        {{field.errors}}
+        </div>
+        {% endfor %}
+    </div>
+        <input type='submit' class='bg-white px-4 py-2 mt-10 text-c1 hover:text-white hover:bg-blue-900 cursor-pointer rounded-lg'>
+    </form><br>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+
+{% block title %}Resume-{{user.first_name}}{% endblock  %}
+
+{% block content %}
+
+<h1 style='text-align: center;'>{{userinfo_obj.first_name}} {{userinfo_obj.sur_name}}</h1>
+<p>Phone: {{userinfo_obj.phone}}| Email: {{userinfo_obj.email}}| Location: {{userinfo_obj.city}}</p>
+
+<p><span style='font-size:medium; font-weight: bold;'>Career Objective:</span> {{userinfo_obj.career_objective}}</p>
+<hr>
+
+
+<h3>Education</h3>
+{% for i in education_obj %}
+<p><span style='font-weight: bold;'>College Name</span> - {{i.school_name}}| CPGA: {{i.CGPA}}<br>
+{{i.degree}} {{i.field_of_study}} | year: {{i.start_date}} - {{i.end_date}}</p>
+<hr>
+{% endfor %}
+
+<h3>Skills</h3>
+
+<p><span style='font-weight: bold;'>Languages</span>
+{% for i in skill_obj.language %} | {{i}}{% endfor %}<br>
+
+<span style='font-weight: bold;'>Techologies</span>
+{% for i in skill_obj.technologies %} | {{i}}{% endfor %}<br>
+
+<span style='font-weight: bold;'>Core</span>
+{% for i in skill_obj.core %} | {{i}}{% endfor %}</p>
+<hr>
+
+
+<h3>Internship or Work Experience</h3>
+{% for i in workinginfo_obj %}
+<p><span style='font-weight: bold;'>Company-</span> {{i.company_name}}| Duration: {{i.start_date}} - {{i.end_date}}<br>
+    <span style='font-weight: bold;'>>Role-</span> {{i.your_role}}<br>
+> {{i.role_description}}</p>
+{% endfor %}
+<hr>
+
+<h3>Others</h3>   
+
+
+{% if others_obj.portfolio != "" %}
+<a href='{{others_obj.portfolio}}'>Portfolio</a>  
+{% endif %}
+<a href='{{others_obj.linked_in}}'>LinkedIn</a>
+<a href='{{others_obj.github}}'>Github</a>
+<a href='{{others_obj.leet_code}}'>Leetcode</a>
+{% if others_obj.other_link != "" %}
+<a href='{{others_obj.other_link}}'>Other Link</a>  
+{% endif %}
+<hr>
+<h3>Projects</h3>
+<p>{{others_obj.projects}}</p>
+{% endblock %}
